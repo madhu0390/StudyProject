@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Container } from "./components/styles/Container.styled";
 import { Button } from "./components/styles/Button.styled";
+import WeatherForecast  from "./views/WeatherForecast";
 
 const App = (props) => {
   const increment = () => {
@@ -21,14 +22,15 @@ const App = (props) => {
   return (
     <>
     <Container>
+    <h1 data-testid="counter-text">{props.count}</h1>
       <Button bg="#2ecc71" mr="30" onClick={increment} data-testid="btn-increment">
         Increment
       </Button>
       <Button bg="#c0392b" onClick={decrement} data-testid="btn-decrement">
         Decrement
       </Button>
-      <h1 data-testid="counter-text">{props.count}</h1>
       </Container>
+      <WeatherForecast />
     </>
   );
 };
