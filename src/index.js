@@ -4,9 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux'
-import {createStore} from 'redux'
 import reducer from './reducer'
-let store = createStore(reducer)
+import { createStore, applyMiddleware,combineReducers } from 'redux'
+import createSagaMiddleware from 'redux-saga'
+import rootSaga from './store/rootSaga'
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { Task } from './store/ducks/task'
+import GlobalStyles from './GlobalStyles'
+
+const rootReducer = combineReducers({
+  Task,
+  counter:reducer
+})
+
+const sagaMiddleware = createSagaMiddleware()
+let store = createStore(rootReducer,composeWithDevTools(applyMiddleware(sagaMiddleware)))
+
+sagaMiddleware.run(rootSaga)
 
 const MyAppWithStore = () => (
   <Provider store={store}>
@@ -16,6 +30,7 @@ const MyAppWithStore = () => (
 
 ReactDOM.render(
   <React.StrictMode>
+    <GlobalStyles />
     <MyAppWithStore />
   </React.StrictMode>,
   document.getElementById('root')
