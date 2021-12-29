@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Switch, Route, Link,BrowserRouter } from "react-router-dom";
+import { Switch, Route, Link, BrowserRouter as Router } from "react-router-dom";
 import { removeTaskById, requestFetchUser,markCompleteTaskById,doLaterTaskById } from '../store/ducks/task'
 import {
   Container,
@@ -16,8 +16,7 @@ import {
   StyledLink
 } from '../components/styles/ToDo.styled'
 
-const ToDoList = (props) => {
-
+const ToDoList  = () => {
 
   const userNameRef = useRef(null)
   const [username, setUserName] = useState('')
@@ -58,7 +57,7 @@ const ToDoList = (props) => {
     <Container>
       <TodoContainer onSubmit={handleSubmit}>
         <Title>Todo List</Title>
-
+        {console.log("====location",window.location.pathname)}
         <InputContainer>
           <Input
             ref={userNameRef}
@@ -77,20 +76,20 @@ const ToDoList = (props) => {
         <AddButton type="submit">Add Task +</AddButton>
 
         {!!showError && <Error text="Uer not found!" />}
-        <BrowserRouter> 
+        <Router> 
         <>
         <InputContainer>
-          <StyledLink to={'/'}>New Task</StyledLink>
-          <StyledLink to={`/completed`}>Completed</StyledLink>
-          <StyledLink to={`/later`}>Later</StyledLink>
+          <StyledLink exact to='/'>New Task</StyledLink>
+          <StyledLink exact to='/completed'>Completed</StyledLink>
+          <StyledLink exact to='/later'>Later</StyledLink>
         </InputContainer>
         <Switch>
-            <Route path={"/"} exact component={() => (<NewTask taskList={taskList.filter(({status})=>status == 1)} handleRemoveTask={handleRemoveTask} handleComplete={handleComplete} handleDoLater={handleDoLater} />)}/> 
-            <Route path={"/completed"} component={()=>(<Completed taskList={taskList.filter(({status})=>status == 2)} handleRemoveTask={handleRemoveTask}/>)} />
-            <Route path={"/later"} component={()=>(<Later taskList={taskList.filter(({status})=>status == 3)} handleRemoveTask={handleRemoveTask}/>)} />
+            <Route path="/" exact component={() => (<NewTask taskList={taskList.filter(({status})=>status == 1)} handleRemoveTask={handleRemoveTask} handleComplete={handleComplete} handleDoLater={handleDoLater} />)}/> 
+            <Route path="/completed" exact component={()=>(<Completed taskList={taskList.filter(({status})=>status == 2)} handleRemoveTask={handleRemoveTask}/>)} />
+            <Route path="/later" exact component={()=>(<Later taskList={taskList.filter(({status})=>status == 3)} handleRemoveTask={handleRemoveTask}/>)} />
           </Switch>
           </>
-        </BrowserRouter>
+        </Router>
       </TodoContainer>
     </Container>
   )

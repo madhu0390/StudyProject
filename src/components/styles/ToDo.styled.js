@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import TodoItem from '../UI/TodoItem'
 import ErrorBox from '../UI/ErrorBox'
-import { Link } from 'react-router-dom';
-
+import { NavLink } from 'react-router-dom';
+const activeClassName = "nav-item-active";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -89,15 +89,34 @@ export const Error = styled(ErrorBox)`
 `
 
 
-export const StyledLink = styled(Link)`
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.8rem;
-    background: var(--accent-color);
-    padding:20px;
-    color:#FFF;
-    border-radius:15px;
-    &:focus, &:hover, &:visited, &:link, &:active {
-        text-decoration: none;
-    }
-`;
+// export const StyledLink = styled(NavLink)`
+//     text-decoration: none;
+//     font-weight: bold;
+//     font-size: 1.8rem;
+//     padding:20px;
+//     color:#000;
+//     border-radius:15px;
+    
+//     // &:focus, &:hover, &:visited, &:link, &:active {
+//     //     text-decoration: none;
+//     // }
+//     &.${props => props.activeClassName} {
+//       color: #fff;
+//       background: var(--accent-color);
+//     }
+// `;
+
+export const StyledLink = styled(NavLink).attrs({
+  activeClassName
+})(props => ({
+  textDecoration:"none",
+  fontWeight:"bold",
+  fontSize:"1.8rem",
+  padding:"20px",
+  color:"#000",
+  borderRadius:"15px",
+  ["&." + props.activeClassName]: {
+    backgroundColor: "var(--accent-color)",
+    color:"#fff"
+  }
+}));

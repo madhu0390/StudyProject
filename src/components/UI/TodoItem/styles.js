@@ -9,7 +9,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   transition: all .2s ease-in-out;
-
+  background:#FFF;
   &:hover{
     border: 1px solid rgba(255,255,255,0.2);
   }
