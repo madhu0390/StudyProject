@@ -88,24 +88,6 @@ export const Error = styled(ErrorBox)`
   margin-bottom: 1.6rem;
 `
 
-
-// export const StyledLink = styled(NavLink)`
-//     text-decoration: none;
-//     font-weight: bold;
-//     font-size: 1.8rem;
-//     padding:20px;
-//     color:#000;
-//     border-radius:15px;
-    
-//     // &:focus, &:hover, &:visited, &:link, &:active {
-//     //     text-decoration: none;
-//     // }
-//     &.${props => props.activeClassName} {
-//       color: #fff;
-//       background: var(--accent-color);
-//     }
-// `;
-
 export const StyledLink = styled(NavLink).attrs({
   activeClassName
 })(props => ({
