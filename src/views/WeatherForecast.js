@@ -7,7 +7,6 @@ import ForecastTabs from "../components/UI/ForecastTabs";
 
 import cloudyLarge from "../assets/images/cloudy-large.svg";
 import keys from "../secrets_sample.json";
-import "../App.css";
 
 const WeatherForecast = (props) => {
     const [forecast, setForecast] = useState([]);
