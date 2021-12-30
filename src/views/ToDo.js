@@ -57,7 +57,6 @@ const ToDoList  = () => {
     <Container>
       <TodoContainer onSubmit={handleSubmit}>
         <Title>Todo List</Title>
-        {console.log("====location",window.location.pathname)}
         <InputContainer>
           <Input
             ref={userNameRef}
@@ -73,7 +72,7 @@ const ToDoList  = () => {
           />
         </InputContainer>
 
-        <AddButton type="submit">Add Task +</AddButton>
+        <AddButton type="submit" data-testid="btn-addTask">Add Task +</AddButton>
 
         {!!showError && <Error text="Uer not found!" />}
         <Router> 
